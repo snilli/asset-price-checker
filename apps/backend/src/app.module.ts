@@ -1,7 +1,8 @@
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { APP_INTERCEPTOR } from '@nestjs/core'
+import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core'
+import { ZodSerializerInterceptor, ZodValidationPipe } from 'nestjs-zod'
 import { AssetModule } from './asset/asset.module.js'
 @Module({
 	imports: [
@@ -13,12 +14,21 @@ import { AssetModule } from './asset/asset.module.js'
 			envFilePath: ['.env.development.local', '.env.development'],
 			isGlobal: true,
 		}),
+
 		AssetModule,
 	],
 	providers: [
 		{
+			provide: APP_PIPE,
+			useClass: ZodValidationPipe,
+		},
+		{
 			provide: APP_INTERCEPTOR,
 			useClass: CacheInterceptor,
+		},
+		{
+			provide: APP_INTERCEPTOR,
+			useClass: ZodSerializerInterceptor,
 		},
 	],
 })

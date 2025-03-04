@@ -4,9 +4,11 @@ import { ExpressAdapter } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import compression from 'compression'
 import express from 'express'
+import { patchNestJsSwagger } from 'nestjs-zod'
 import { AppModule } from './app.module.js'
 
 async function bootstrap() {
+	patchNestJsSwagger()
 	const expressApp = express()
 	const app = await NestFactory.create(AppModule, new ExpressAdapter(expressApp))
 	app.enableCors()
