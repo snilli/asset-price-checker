@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "d445010c-1cb6-4871-ae62-034cefb5b8dd",
+		"name": "Assets-Price-Checker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4632273"
+	},
+	"item": [
+		{
+			"name": "Search company name",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/v1/assets/search/:company-name",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"v1",
+						"assets",
+						"search",
+						":company-name"
+					],
+					"variable": [
+						{
+							"key": "company-name",
+							"value": "micro"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get asset by symbol",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}v1/assets/symbol/:symbol",
+					"host": [
+						"{{BASE_URL}}v1"
+					],
+					"path": [
+						"assets",
+						"symbol",
+						":symbol"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "bnb-usd"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

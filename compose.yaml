@@ -1,0 +1,10 @@
+# docker run -d .  -f ./apps/backend/Dockerfile.node
+
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    
+    ports:
+      - "8080:8080"
